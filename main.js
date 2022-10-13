@@ -14,10 +14,24 @@ function dateDiffSet() {
     document.querySelector('.diff-day').innerHTML = `결혼식 ${days}일 전`;
 }
 
+function preload(images) {
+    for (let img of images) {
+        let image = new Image();
+        image.src = img;
+    }
+}
+
+
 document.addEventListener("DOMContentLoaded", function(event) {
     dateDiffSet();
 
     new ClipboardJS('.btn');
+    preload([
+        './images/man_2.png',
+        './images/man_3.png',
+        './images/woman_2.png',
+        './images/woman_3.png',
+    ])
 
     const char = document.querySelector('.clickable');
     char.addEventListener('mousedown', () => {
@@ -37,7 +51,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
         let toggle = false;
-        setCharClass(2);
+        setCharClass(3);
+        document.querySelector('.remove-when-anim').remove();
 
         setInterval(() => {
 
@@ -46,8 +61,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             toggle = !toggle;
         }, 1000)
+    })
 
-        
+
+    document.querySelector('.copy-btn').addEventListener('mousedown', () => {
+        alert('복사 되었습니다.');
     })
 
 });

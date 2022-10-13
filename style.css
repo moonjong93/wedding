@@ -67,10 +67,12 @@ body {
 
 .man-2 {
     background-image: url('/images/man_2.png');
+    background-position: right;
 }
 
 .man-3 {
     background-image: url('/images/man_3.png');
+    background-position: right;
 }
 
 .woman-1 {
@@ -79,10 +81,12 @@ body {
 
 .woman-2 {
     background-image: url('/images/woman_2.png');
+    background-position: left;
 }
 
 .woman-3 {
     background-image: url('/images/woman_3.png');
+    background-position: left;
 }
 
 
