@@ -45,8 +45,10 @@ body {
   font-size: 1.4rem;
 }
 
+
 .sub-text {
   color: var(--text-sub);
+  text-decoration: none;
 }
 
 .accent-text {
@@ -88,7 +90,6 @@ body {
     background-image: url('/images/woman_3.png');
     background-position: left;
 }
-
 
 .love {
   width: 30px;
@@ -188,6 +189,10 @@ body {
 
 .map-hint-sub li:first-child {
   margin-top: 1rem;
+}
+
+.map-hint-sub img {
+  max-width: 1.8rem;
 }
 
 .hint-title {

@@ -25,7 +25,12 @@ function preload(images) {
 document.addEventListener("DOMContentLoaded", function(event) {
     dateDiffSet();
 
-    new ClipboardJS('.btn');
+    const clip = new ClipboardJS('.btn');
+    clip.on('success', (e) => {
+
+        alert('복사 되었습니다.');
+        e.clearSelection();
+    })
     preload([
         './images/man_2.png',
         './images/man_3.png',
@@ -55,19 +60,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector('.remove-when-anim').remove();
 
         setInterval(() => {
-
             if (toggle) setCharClass(3);
             else setCharClass(2);
-
             toggle = !toggle;
         }, 1000)
     })
 
 
-    document.querySelector('.copy-btn').addEventListener('mousedown', () => {
-        alert('복사 되었습니다.');
-    })
-
+    // document.querySelectorAll('.copy-btn').forEach((e)=> 
+        // e.addEventListener('mousedown', () => {
+        //     alert('복사 되었습니다.');
+        // })
+    // )
 });
 
 
