@@ -1,6 +1,6 @@
 import './style.css';
-
-
+import 'photoswipe/style.css';
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
 
 function dateDiffSet() {
     const now = new Date();
@@ -22,8 +22,102 @@ function preload(images) {
 }
 
 
+let played = false;
+let isAudio = false;
+
+
+const galleryImages = [
+    {
+        w: 1440,
+        h: 1111,
+        src: '/IMG_5983.jpg'
+    },
+    {
+        w: 960,
+        h: 1440,
+        src: '/IMG_6028.jpg'
+    },
+    {
+        w: 960,
+        h: 1345,
+        src: '/IMG_6492.jpg'
+    },
+    {
+        w: 960,
+        h: 1440,
+        src: '/IMG_6088.jpg'
+    }, 
+    {
+        w: 960,
+        h: 1440,
+        src: '/IMG_6100.jpg'
+    }, 
+    {
+        w: 960,
+        h: 1285,
+        src: '/IMG_6068.jpg'
+    },
+    {
+        w: 1440,
+        h: 960,
+        src: '/IMG_6493.jpg'
+    },
+    {
+        w: 960,
+        h: 1440,
+        src: '/IMG_6204.jpg'
+    },
+    {
+        w: 960,
+        h: 1440,
+        src: '/IMG_6268.jpg',
+        isBottom: true,
+    },
+    {
+        w: 901,
+        h: 1352,
+        src: '/IMG_6290.jpg'
+    },
+    {
+        w: 1432,
+        h: 925,
+        src: '/IMG_6330.jpg'
+    },
+    {
+        w: 1399,
+        h: 913,
+        src: '/IMG_6311.jpg'
+    },
+]
+
 document.addEventListener("DOMContentLoaded", function(event) {
     dateDiffSet();
+
+
+    const gallery = document.querySelector('.grid-container');
+    galleryImages.forEach((val, idx) => {
+        const a = document.createElement('a');
+        const src = `/images/album/${val.src}`;
+        a.setAttribute('data-pswp-width', val.w);
+        a.setAttribute('data-pswp-height', val.h);
+        a.href = src;
+        a.target = "_blank";
+
+        a.style = `background-image: url(${src})`;
+        if (val.isBottom) a.style.backgroundPosition = 'bottom';
+        a.className = 'cover-image';
+
+        gallery.appendChild(a);
+
+    })
+
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: ".grid-container",
+        children: "a",
+        pswpModule: () => import("photoswipe"),
+    });
+    lightbox.init();
+
 
     const clip = new ClipboardJS('.btn');
     clip.on('success', (e) => {
@@ -38,41 +132,69 @@ document.addEventListener("DOMContentLoaded", function(event) {
         './images/woman_3.png',
     ])
 
-    const char = document.querySelector('.clickable');
-    char.addEventListener('mousedown', () => {
-        const playerGroup = document.querySelector('.player-group');
-        const players = document.querySelectorAll('lottie-player');
-        playerGroup.style.display = 'block';
-        players[0].addEventListener('complete', () => {
-            playerGroup.style.opacity = '0';
-            setTimeout(() => {
-                playerGroup.remove();
-            }, 2000);
-        })
 
-        players.forEach((p) => {
-            p.play();
-        })
+    const audioClip = document.querySelector('#audioClip');
+    audioClip.volume = 0.2;
 
 
-        let toggle = false;
-        setCharClass(3);
-        document.querySelector('.remove-when-anim').remove();
+    const audioBtn = document.querySelector('#footer-play-btn');
+    audioBtn.addEventListener('click', () => {
+        startAnimation();
+        const audioClip = document.querySelector('#audioClip');
+        const audioClipIcon = document.querySelector('#audioClipIcon');
+        if (!isAudio) {
+            audioClip.play();
+            audioClipIcon.className = "bi bi-pause-fill";
+        } 
+        else {
+            audioClip.pause();
+            audioClipIcon.className = "bi bi-play-fill";
+        } 
 
-        setInterval(() => {
-            if (toggle) setCharClass(3);
-            else setCharClass(2);
-            toggle = !toggle;
-        }, 1000)
+
+        isAudio = !isAudio;
     })
 
-
-    // document.querySelectorAll('.copy-btn').forEach((e)=> 
-        // e.addEventListener('mousedown', () => {
-        //     alert('복사 되었습니다.');
-        // })
-    // )
+    const char = document.querySelector('.clickable');
+    char.addEventListener('mousedown', () => {
+        startAnimation();
+    })
 });
+
+
+function startAnimation() {
+    if ( played) return;
+    const playerGroup = document.querySelector('.player-group');
+    const players = document.querySelectorAll('lottie-player');
+    const audioClip = document.querySelector('#audioClip');
+    playerGroup.style.display = 'block';
+    players[0].addEventListener('complete', () => {
+        playerGroup.style.opacity = '0';
+        setTimeout(() => {
+            playerGroup.remove();
+        }, 2000);
+    })
+
+    players.forEach((p) => {
+        p.play();
+    })
+
+    // audioClip.play();
+    const audioClipIcon = document.querySelector('#audioClipIcon');
+    audioClipIcon.className = "bi bi-pause-fill"
+    isAudio = true;
+
+    let toggle = false;
+    setCharClass(3);
+    document.querySelector('.remove-when-anim').remove();
+    played = true;
+
+    setInterval(() => {
+        if (toggle) setCharClass(3);
+        else setCharClass(2);
+        toggle = !toggle;
+    }, 1000)
+}
 
 
 function setCharClass(target) {

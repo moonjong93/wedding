@@ -208,6 +208,7 @@ body {
 
 .call {
   margin-left: 20px;
+  text-decoration: none;
 }
  
 .map-image {
@@ -265,3 +266,58 @@ button.lm-btn {
 .centered-text {
   text-align: center;
 }
+
+.footer-fixed {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  width: 100%;
+  bottom: 0px;
+  left: 0;
+  background-color: rgba(43, 43, 43, 0.555);
+}
+
+.footer-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.footer-cover p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-left: 0.4rem;
+  padding: 0;
+  margin-bottom: 0;
+  color: white;
+}
+
+.footer-player-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.pswp-gallery a {
+  text-decoration: none;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-image {
+  height: 120px;
+  flex: 1 0 30%;
+  background-size: cover;
+  background-position: center;
+}
+
