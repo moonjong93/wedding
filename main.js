@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const gallery = document.querySelector('.grid-container');
     galleryImages.forEach((val, idx) => {
         const a = document.createElement('a');
-        const src = `/images/album/${val.src}`;
+        const src = `./images/album/${val.src}`;
         a.setAttribute('data-pswp-width', val.w);
         a.setAttribute('data-pswp-height', val.h);
         a.href = src;
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     const audioClip = document.querySelector('#audioClip');
-    audioClip.volume = 0.2;
+    audioClip.volume = 0.1;
 
 
     const audioBtn = document.querySelector('#footer-play-btn');
@@ -158,6 +158,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const char = document.querySelector('.clickable');
     char.addEventListener('mousedown', () => {
         startAnimation();
+
+        const audioClip = document.querySelector('#audioClip');
+        
+        audioClip.play();
+        const audioClipIcon = document.querySelector('#audioClipIcon');
+        audioClipIcon.className = "bi bi-pause-fill"
+        isAudio = true;
     })
 });
 
@@ -166,7 +173,6 @@ function startAnimation() {
     if ( played) return;
     const playerGroup = document.querySelector('.player-group');
     const players = document.querySelectorAll('lottie-player');
-    const audioClip = document.querySelector('#audioClip');
     playerGroup.style.display = 'block';
     players[0].addEventListener('complete', () => {
         playerGroup.style.opacity = '0';
@@ -179,10 +185,6 @@ function startAnimation() {
         p.play();
     })
 
-    // audioClip.play();
-    const audioClipIcon = document.querySelector('#audioClipIcon');
-    audioClipIcon.className = "bi bi-pause-fill"
-    isAudio = true;
 
     let toggle = false;
     setCharClass(3);

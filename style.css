@@ -302,10 +302,6 @@ button.lm-btn {
   font-size: 3rem;
 }
 
-.pswp-gallery a {
-  text-decoration: none;
-}
-
 .grid-container {
   display: flex;
   flex-wrap: wrap;
@@ -321,3 +317,6 @@ button.lm-btn {
   background-position: center;
 }
 
+#audioClipIcon {
+  color: white;
+}
