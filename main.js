@@ -159,12 +159,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     char.addEventListener('mousedown', () => {
         startAnimation();
 
-        const audioClip = document.querySelector('#audioClip');
-        
-        audioClip.play();
-        const audioClipIcon = document.querySelector('#audioClipIcon');
-        audioClipIcon.className = "bi bi-pause-fill"
-        isAudio = true;
+        // const audioClip = document.querySelector('#audioClip');
+        // audioClip.play();
+        // const audioClipIcon = document.querySelector('#audioClipIcon');
+        // audioClipIcon.className = "bi bi-pause-fill"
+        // isAudio = true;
     })
 });
 
