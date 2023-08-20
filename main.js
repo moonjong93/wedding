@@ -7,11 +7,11 @@ function dateDiffSet() {
     const day = new Date('2023', '0', '7', '18', '20');
 
 
-    const diff = day - now;
+    const diff = now - day;
     const days = Math.round((diff / (1000*60*60*24)));
 
 
-    document.querySelector('.diff-day').innerHTML = `결혼식 ${days}일 전`;
+    document.querySelector('.diff-day').innerHTML = `결혼식 ${days}일 후`;
 }
 
 function preload(images) {
